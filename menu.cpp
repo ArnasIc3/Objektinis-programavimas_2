@@ -57,7 +57,7 @@ void Menu_execute() {
                     student.setVardas(vardas);
                     student.setPavarde(pavarde);
                     int grade;
-                    vector<double> nd;
+                    vector<int> nd;
                     while (iss >> grade) {
                         nd.push_back(grade);
                     }

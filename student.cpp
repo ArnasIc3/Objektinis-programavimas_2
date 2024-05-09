@@ -4,12 +4,32 @@ const int NUM_NAMES = 10;
 vector<string> vardai = { "Jonas", "Petras", "Algis", "Marius", "Gintaras", "Tomas", "Lukas", "Simas", "Gabrielius", "Olegas" };
 vector<string> pavardes = { "Kelmutis", "Kelmutaite", "Dangavicius", "Pieliauskas", "Lukavicius", "Simonavicius", "Skaudavicius", "Juzenas", "Darbavicius", "Stankevicius" };
 
-// konstruktoriaus realizacija
-Studentas::Studentas(std::istream& is) { 
-    is >> vardas_ >> pavarde_ >> egzaminas_;
-    double nd;
-    while (is >> nd) {
-        nd_.push_back(nd);
+// Define the constructor for Studentas
+Studentas::Studentas() {}
+
+// Define the constructor for Studentas with parameters
+Studentas::Studentas(const std::string& vardas_, const std::string& pavarde_, double galutinis_, const std::vector<int>& nd_)
+    : vardas_(vardas_), pavarde_(pavarde_), egzaminas_(galutinis_), nd_(nd_) {}
+
+// Define the copy constructor for Studentas
+Studentas::Studentas(const Studentas& other)
+    : vardas_(other.vardas_), pavarde_(other.pavarde_),
+        nd_(other.nd_), egzaminas_(other.egzaminas_) {}
+
+// Define the calculateGalutinis method for Studentas
+void Studentas::calculateGalutinis(bool useMedian) {
+    if (nd_.empty()) {
+        setGalutinis(egzaminas_);
+    }
+    else {
+        double nd_sum = accumulate(nd_.begin(), nd_.end(), 0);
+        double vidurkis = nd_sum / nd_.size();
+        if (useMedian) {
+            setGalutinis(0.4 * useMediana(nd_) + 0.6 * egzaminas_);
+        }
+        else {
+            setGalutinis(0.4 * vidurkis + 0.6 * egzaminas_);
+        }
     }
 }
 
@@ -36,39 +56,39 @@ double useMediana(const vector<int>& grades) {
 void Ivedimas(vector<Studentas>& stud, bool randomNames, bool randomGrades, bool studentCount) {
     bool moreStudents = true;
     while (moreStudents) {
-        Studentas student;
+        Studentas student; // Declare a Studentas object
 
         if (!randomNames && !studentCount) {
             cout << "Iveskite studento varda ir pavarde: ";
             string vardas, pavarde;
             cin >> vardas >> pavarde;
-            student.setVardas(vardas);
-            student.setPavarde(pavarde);
+            student.setVardas(vardas); // Use the student object
+            student.setPavarde(pavarde); // Use the student object
         }
         else {
             int randIndex = rand() % NUM_NAMES;
-            student.setVardas(vardai[randIndex]);
-            student.setPavarde(pavardes[randIndex]);
+            student.setVardas(vardai[randIndex]); // Use the student object
+            student.setPavarde(pavardes[randIndex]); // Use the student object
         }
 
         if (randomGrades) {
             int ndCount = rand() % 11;
-            vector<double> nd;
+            vector<int> nd;
             for (int j = 0; j < ndCount; j++) {
                 nd.push_back(rand() % 11);
             }
-            student.setNd(nd);
-            student.setEgzaminas(rand() % 11);
+            student.setNd(nd); // Use the student object
+            student.setEgzaminas(rand() % 11); // Use the student object
         }
         else {
             string input;
             do {
-                cout << "Kiek pazymiu rezultatu turi " << student.vardas() << " " << student.pavarde() << ": ";
+                cout << "Kiek pazymiu rezultatu turi " << student.getVardas() << " " << student.getPavarde() << ": ";
                 cin >> input;
             } while (!isNumber(input));
             int ndCount = stoi(input);
 
-            vector<double> nd;
+            vector<int> nd;
             for (int j = 0; j < ndCount; j++) {
                 do {
                     cout << j + 1 << " balas: ";
@@ -76,16 +96,16 @@ void Ivedimas(vector<Studentas>& stud, bool randomNames, bool randomGrades, bool
                 } while (!(isNumber(input) && stoi(input) >= 0 && stoi(input) <= 10));
                 nd.push_back(stoi(input));
             }
-            student.setNd(nd);
+            student.setNd(nd); // Use the student object
 
             do {
                 cout << "Iveskite egzamino rezultata: ";
                 cin >> input;
             } while (!(isNumber(input) && stoi(input) >= 0 && stoi(input) <= 10));
-            student.setEgzaminas(stoi(input));
+            student.setEgzaminas(stoi(input)); // Use the student object
         }
 
-        stud.push_back(student);
+        stud.push_back(student); // Use the student object
 
         char moreChoice;
         cout << "Ar norite ivesti dar viena studenta? (Y/N): ";
@@ -105,19 +125,19 @@ void Spausdinimas(const vector<Studentas>& stud, bool Mediana) {
     cout << endl;
     cout << "--------------------------------------------" << endl;
     for (const auto& student : stud) {
-        cout << left << setw(15) << student.pavarde() << left << setw(15) << student.vardas() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis() << endl;
+        cout << left << setw(15) << student.getPavarde() << left << setw(15) << student.getVardas() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis() << endl;
     }
 }
 
 void sortStudents(vector<Studentas>& students, const string& sortBy) {
     if (sortBy == "V" || sortBy == "v") {
         sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
-            return a.vardas() < b.vardas();
+            return a.getVardas() < b.getVardas();
             });
     }
     else if (sortBy == "P" || sortBy == "p") {
         sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
-            return a.pavarde() < b.pavarde();
+            return a.getPavarde() < b.getPavarde();
             });
     }
     else if (sortBy == "G" || sortBy == "g") {
@@ -128,7 +148,7 @@ void sortStudents(vector<Studentas>& students, const string& sortBy) {
     else {
         cout << "Neteisingas rikiavimo pasirinkimas. Vykdomas rikiavimas pagal varda." << endl;
         sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
-            return a.vardas() < b.vardas();
+            return a.getVardas() < b.getVardas();
             });
     }
 }
@@ -215,7 +235,7 @@ void Generacija(int Pas) {
             student.setVardas(vardas);
             student.setPavarde(pavarde);
             int grade;
-            vector<double> nd;
+            vector<int> nd;
             while (iss >> grade) {
                 nd.push_back(grade);
             }
@@ -241,12 +261,12 @@ void Generacija(int Pas) {
         // Write high and low grade students to separate files
         highGradesFile << "Vardas    Pavarde  Galutinis (Vid.)" << endl;
         for (const auto& student : highGrades) {
-            highGradesFile << left << setw(15) << student.vardas() << left << setw(15) << student.pavarde() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis() << endl;
+            highGradesFile << left << setw(15) << student.getVardas() << left << setw(15) << student.getPavarde() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis() << endl;
         }
         
         lowGradesFile << "Vardas    Pavarde  Galutinis (Vid.)" << endl;
         for (const auto& student : lowGrades) {
-            lowGradesFile << left << setw(15) << student.vardas() << left << setw(15) << student.pavarde() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis() << endl;
+            lowGradesFile << left << setw(15) << student.getVardas() << left << setw(15) << student.getPavarde() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis() << endl;
         }
         auto stopOutput = high_resolution_clock::now();
         auto durationOutput = duration_cast<milliseconds>(stopOutput - startOutput);
@@ -292,7 +312,7 @@ void Generacija(int Pas) {
                 student.setVardas(vardas);
                 student.setPavarde(pavarde);
                 int grade;
-                vector<double> nd;
+                vector<int> nd;
                 while (iss >> grade) {
                     nd.push_back(grade);
                 }
@@ -315,7 +335,7 @@ void Generacija(int Pas) {
             auto startOutput = high_resolution_clock::now();
             lowGradesFile << "Vardas    Pavarde  Galutinis (Vid.)" << endl;
             for (const auto& student : lowGrades) {
-                lowGradesFile << left << setw(15) << student.vardas() << left << setw(15) << student.pavarde() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis() << endl;
+                lowGradesFile << left << setw(15) << student.getVardas() << left << setw(15) << student.getPavarde() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis() << endl;
             }
             auto stopOutput = high_resolution_clock::now();
             auto durationOutput = duration_cast<milliseconds>(stopOutput - startOutput);
@@ -346,7 +366,7 @@ void Generacija(int Pas) {
                 student.setVardas(vardas);
                 student.setPavarde(pavarde);
                 int grade;
-                vector<double> nd;
+                vector<int> nd;
                 while (iss >> grade) {
                     nd.push_back(grade);
                 }
@@ -387,12 +407,12 @@ void Generacija(int Pas) {
         
             // Write high grade students to highGradesFile
             for (auto& student : highGradeStudents) {
-                highGradesFile << student.vardas().c_str() << " " << student.pavarde().c_str() << " " << student.getGalutinis() << "\n";
+                highGradesFile << student.getVardas().c_str() << " " << student.getPavarde().c_str() << " " << student.getGalutinis() << "\n";
             }
             
             // Write low grade students to lowGradesFile
             for (auto& student : lowGradeStudents) {
-                lowGradesFile << student.vardas().c_str() << " " << student.pavarde().c_str() << " " << student.getGalutinis() << "\n";
+                lowGradesFile << student.getVardas().c_str() << " " << student.getPavarde().c_str() << " " << student.getGalutinis() << "\n";
             }
             highGradesFile.close();
             lowGradesFile.close();
@@ -400,6 +420,7 @@ void Generacija(int Pas) {
             auto stopOutput = high_resolution_clock::now();
             auto durationOutput = duration_cast<milliseconds>(stopOutput - startOutput);
             cout << " File " << fileIndex << "  output execution time : " << durationOutput.count() / 1000.0 << " seconds." << endl;
+            cout << endl;
         }
     }
 }

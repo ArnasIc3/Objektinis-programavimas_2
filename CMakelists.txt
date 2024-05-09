@@ -10,5 +10,14 @@ set(SOURCES
     student.h
 )
 
+# Set the -O1 optimization flag
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O1")
+
+# Or, for -O2 optimization
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
+
+# Or, for -O3 optimization
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+
 # Add executable target
 add_executable(v1.1 ${SOURCES} ${HEADERS})

@@ -20,55 +20,60 @@ using namespace std::chrono;
 
 class Studentas {
 private:
-  std::string vardas_;
-  std::string pavarde_;
-  double egzaminas_;
-  std::vector<double> nd_;
-  double galutinis_;
+    std::string vardas_;
+    std::string pavarde_;
+    double egzaminas_;
+    std::vector<int> nd_;
+    double galutinis_;
 public:
-  Studentas() : egzaminas_(0) { }  // default konstruktorius
-  Studentas(std::istream& is);
-    inline double egzaminas() const { return egzaminas_; }  // getter for egzaminas_
-    inline std::vector<double> nd() const { return nd_; }  // getter for nd_
+        // Default constructor
+        Studentas();
+        // Constructor with parameters
+        Studentas(const std::string& vardas_, const std::string& pavarde_, double galutinis_, const std::vector<int>& nd_);
+        // Copy constructor
+        Studentas(const Studentas& other);
+        // Destructor
+        ~Studentas() {}
 
-    string vardas() const { return vardas_; }
-    string pavarde() const { return pavarde_; }
+        // Getters
+        inline std::string getVardas() const { return vardas_; } 
+        inline std::string getPavarde() const { return pavarde_; }
+        const std::vector<int>& getND() const { return nd_; }
+        double getGalutinis() const { return galutinis_; }
+        double getEgzaminas() { return egzaminas_;}
 
-    void calculateGalutinis(bool useMedian) {
-        if (useMedian) {
-            sort(nd_.begin(), nd_.end());
-            if (nd_.size() % 2 == 0) {
-                galutinis_ = (nd_[nd_.size() / 2 - 1] + nd_[nd_.size() / 2]) / 2;
-            }
-            else {
-                galutinis_ = nd_[nd_.size() / 2];
-            }
-        }
-        else {
-            double nd_sum = accumulate(nd_.begin(), nd_.end(), 0);
-            galutinis_ = 0.4 * (nd_sum / nd_.size()) + 0.6 * egzaminas_;
-        }
-    }
 
-    vector<double> getNd() const { return nd_; }
-    double getGalutinis() const { return galutinis_; }
-    double getEgzaminas() const { return egzaminas_; }
-
-    void setVardas(const std::string& vardas) { vardas_ = vardas; }  // setter for vardas_
-    void setPavarde(const std::string& pavarde) { pavarde_ = pavarde; }  // setter for pavarde_
-    void setEgzaminas(double egzaminas) { egzaminas_ = egzaminas; }  // setter for egzaminas_
-    void setNd(const std::vector<double>& nd) { nd_ = nd; }  // setter for nd_
+        // Setters
+        void setVardas(const std::string& vardas) { vardas_ = vardas; }
+        void setPavarde(const std::string& pavarde) { pavarde_ = pavarde; }
+        void setEgzaminas(double egzaminas) { egzaminas_ = egzaminas; }
+        void setNd(const std::vector<int>& nd) { nd_ = nd; }
+        void setGalutinis(double galutinis) { this->galutinis_ = galutinis;}
+        // Calculate the final grade
+        void calculateGalutinis(bool useMedian); // Add the missing implementation
 };
 
+// Comparison functions for sorting
 bool compare(const Studentas&, const Studentas&);
 bool comparePagalPavarde(const Studentas&, const Studentas&);
 bool comparePagalEgza(const Studentas&, const Studentas&);
 
+// Input function
 void Ivedimas(vector<Studentas>& stud, bool randomNames = false, bool randomGrades = false, bool studentCount = false);
+
+// Menu function
 void Pasirinkimai(vector<Studentas>& students);
+
+// Output function
 void Spausdinimas(const vector<Studentas>& students, bool Mediana);
+
+// Check if a string is a number
 bool isNumber(const string& str);
+
+// Calculate the final grade using median
 double useMediana(const vector<int>& grades);
+
+// Generate random data
 void Generacija(int Pas);
 
 #endif // STUDENT_H
