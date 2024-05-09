@@ -104,6 +104,37 @@ AMD Ryzen 5 5600H 3.30GHz
 ```
 NVIDIA GeForce RTX 3050 Laptop GPU
 ```
+## Su STRUCT ir CLASS VECTOR konteineriu 3-a strategija: ###
+
+|-|100000 Sorting|1000000 Sorting|Size|
+|---|---|---|---|
+|STRUCT|0.536|6.798|3,611 KB|
+|CLASS|0.845|11.147|3,628 KB|
+
+Naudojant STRUCT gauname geresnius rezultatus ir failų dydžio skirtumas nėra didžiulis.
+<details>
+<summary>NUOTRAUKOS</summary>
+<br>
+STRUCT:
+  ![STRUCT](https://github.com/ArnasIc3/Objektinis-programavimas_2/assets/149010264/245b462e-72b3-4f4e-a234-c28105ba6384)
+  ![Screenshot 2024-05-09 171745](https://github.com/ArnasIc3/Objektinis-programavimas_2/assets/149010264/d737b595-a883-42b7-8a18-f14783467284)
+CLASS:
+  ![CLASS 2](https://github.com/ArnasIc3/Objektinis-programavimas_2/assets/149010264/b0baa362-f3a0-4c56-a611-311be9e1a839)
+  ![Screenshot 2024-05-09 171810](https://github.com/ArnasIc3/Objektinis-programavimas_2/assets/149010264/a13b7a66-5dca-4b84-b773-27ab84b558b7)
+</details>
+
+<h1>💣 1.0 TESTAVIMAI: </h1>
+<p>Testavimai atliekami ant:</p>
+
+```
+AMD Ryzen 5 5600H 3.30GHz
+```
+```
+16GB 3200MHz
+```
+```
+NVIDIA GeForce RTX 3050 Laptop GPU
+```
 ## Su VECTOR konteineriu:
 ### Vector 1-a strategija: ###
 
