@@ -92,7 +92,7 @@ Realizuotos 3 strategijos:
 Sūkurtas CMakelists.txt failas kuris leidžia sukompeliuoti tinkamai kodą per VSCode ir buvo pereita prie šio IDE.
 </p>
 
-<h1>💣 1.0 TESTAVIMAI: </h1>
+<h1>NEW💣 1.1 TESTAVIMAI: </h1>
 <p>Testavimai atliekami ant:</p>
 
 ```
