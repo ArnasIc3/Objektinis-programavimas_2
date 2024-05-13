@@ -1,38 +1,23 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.12)
+project(v1.2)
 
-project(Pazymiu_skaiciuokle)
-
-set(CMAKE_CXX_STANDARD 17)
-
-# Define the source files
-set(SOURCE_FILES
+# Add your source files here
+set(SOURCES
+    main.cpp
     menu.cpp
-    menu.h
+    student.cpp 
+    menu.h 
     student.h
-    student.cpp
 )
 
-# Define the directories
-set(DIRECTORIES 1.0_deq 1.0_list 1.0_vect)
+# Set the -O1 optimization flag
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O1")
 
-# Loop over each directory
-foreach(DIR ${DIRECTORIES})
-    # Add the directory to the include paths
-    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${DIR})
+# Or, for -O2 optimization
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
 
-    # Define the source files
-    set(SOURCE_FILES
-        ${DIR}/main.cpp
-        ${DIR}/menu.cpp
-        ${DIR}/menu.h
-        ${DIR}/student.h
-        ${DIR}/student.cpp
-    )
+# Or, for -O3 optimization
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 
-    # Create three different executables for this directory
-    add_executable(${DIR}_Pazymiu_skaiciuokle ${SOURCE_FILES})
-
-    # Set the output names for these executables
-    set_target_properties(${DIR}_Pazymiu_skaiciuokle PROPERTIES OUTPUT_NAME "${DIR}_Pazymiu_skaiciuokle")
-   
-endforeach()
+# Add executable target
+add_executable(v1.2 ${SOURCES} ${HEADERS})
