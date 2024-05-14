@@ -85,10 +85,10 @@ Surušiuota studentus į dvi grupes: galvočiai ir nuskriaustukai. Atlikta spart
 Pridėtas menu, sumažintas main.cpp failo ilgis. </p>
 <p> v1.0 - realizuota naudojant tris skirtingus konteinerius (trys skirtingi folder'iai).
 Bandyta optimizuoti rūšiavimą ir dvi grupes t.y. galvočiai ir nuskriaustukai.
-Realizuotos 3 strategijos: 
-    1 - orginalioji padalinant į dvi grupes skaitant nuo failo.
-    2 - vargšiukų išrašymas į kitą failą ir kitus paliekant orginaliame faile. 
-    3 - taikant algoritmus pagreitintas veikimas.
+Realizuotos 3 strategijos: <br>
+    1 - orginalioji padalinant į dvi grupes skaitant nuo failo.<br>
+    2 - vargšiukų išrašymas į kitą failą ir kitus paliekant orginaliame faile. <br>
+    3 - taikant algoritmus pagreitintas veikimas.<br>
 Sūkurtas CMakelists.txt failas kuris leidžia sukompeliuoti tinkamai kodą per VSCode ir buvo pereita prie šio IDE.</p>
 <p> v1.1 - pereita iš struct į class. Sutvarkytas kodas, pagal naujus gett'erius ir set'erius. Atlikti testai su -o1, -o2, -o3.</p>
 <p> v1.2 - Rule of Five realizavimas su galimu testavimu (main.cpp pakeitus runTests iš False į True ir atvirkčiai) + I/O operatoriai. </p>
