@@ -89,10 +89,91 @@ Realizuotos 3 strategijos:
     1 - orginalioji padalinant į dvi grupes skaitant nuo failo.
     2 - vargšiukų išrašymas į kitą failą ir kitus paliekant orginaliame faile. 
     3 - taikant algoritmus pagreitintas veikimas.
-Sūkurtas CMakelists.txt failas kuris leidžia sukompeliuoti tinkamai kodą per VSCode ir buvo pereita prie šio IDE.
-</p>
+Sūkurtas CMakelists.txt failas kuris leidžia sukompeliuoti tinkamai kodą per VSCode ir buvo pereita prie šio IDE.</p>
 <p> v1.1 - pereita iš struct į class. Sutvarkytas kodas, pagal naujus gett'erius ir set'erius. Atlikti testai su -o1, -o2, -o3.</p>
-<p> v1.2 - Rule of Five implementacija + I/O operatoriai.</p>
+<p> v1.2 - Rule of Five realizavimas su galimu testavimu (main.cpp pakeitus runTests iš False į True ir atvirkčiai) + I/O operatoriai. </p>
+
+<h1>💣 1.2 RULE OF FIVE IR I/O OPERATORIAI: </h1>
+ 
+## RULE OF FIVE ##
+RULE OF FIVE yra C++ programavimo kalbos taisyklė, kuri nurodo, kad jei klasė apibrėžia arba ištrina bet kurį iš šių narių funkcijų, ji turėtų apibrėžti arba ištrinti visus iš jų:
+ - Destructorius
+ - Kopijavimo konstruktorius
+ - Kopijavimo priskyrimo operatorius
+ - Perkėlimo konstruktorius
+ - Perkėlimo priskyrimo operatorius
+Destructorius, kopijavimo konstruktorius, kopijavimo priskyrimo operatorius, perkėlimo konstruktorius ir perkėlimo priskyrimo operatorius yra apibrėžti. Tai užtikrina tinkamą išteklių valdymą, kai Studentas objektai yra kopijuojami arba perkeliami.
+
+## Įvesties ir išvesties operatoriai ##
+Įvesties (>>) ir išvesties (<<) operatoriai buvo perkrauti Studentas klasei.
+
+Įvesties operatorius apibrėžtas taip:
+![image](https://github.com/ArnasIc3/Objektinis-programavimas_2/assets/149010264/ba5b791d-7921-4a9f-b985-0dcaf5283b46)
+Tai leidžia skaityti studento vardą ir pavardę iš įvesties srauto (pvz., std::cin ar std::ifstream objekto) tiesiai į Studentas objektą.
+
+Išvesties operatorius apibrėžtas taip:
+std::ostream& operator<<(std::ostream& os, const Studentas& student) {
+    os << left << setw(15) << student.getPavarde() << left << setw(15) << student.getVardas() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis();
+    return os;
+}
+Tai leidžia išvesti studento pavardę, vardą ir galutinį balą į išvesties srautą (pvz., std::cout ar std::ofstream objektą) tiesiai iš Studentas objekto.
+<h1>💣 1.1 TESTAVIMAI: </h1>
+<p>Testavimai atliekami ant:</p>
+
+```
+AMD Ryzen 5 5600H 3.30GHz
+```
+```
+16GB 3200MHz
+```
+```
+NVIDIA GeForce RTX 3050 Laptop GPU
+```
+## Su STRUCT ir CLASS VECTOR konteineriu 3-a strategija: ###
+
+|-|100000 Sorting|1000000 Sorting|Size|
+|---|---|---|---|
+|STRUCT|0.536|6.798|3,611 KB|
+|CLASS|0.845|11.147|3,628 KB|
+
+Naudojant STRUCT gauname geresnius rezultatus ir failų dydžio skirtumas nėra didžiulis.
+<details>
+<summary>NUOTRAUKOS</summary>
+<br>
+STRUCT:
+  
+  ![STRUCT](https://github.com/ArnasIc3/Objektinis-programavimas_2/assets/149010264/245b462e-72b3-4f4e-a234-c28105ba6384)
+  ![Screenshot 2024-05-09 171745](https://github.com/ArnasIc3/Objektinis-programavimas_2/assets/149010264/d737b595-a883-42b7-8a18-f14783467284)
+  
+CLASS:
+
+  ![CLASS 2](https://github.com/ArnasIc3/Objektinis-programavimas_2/assets/149010264/b0baa362-f3a0-4c56-a611-311be9e1a839)
+  ![Screenshot 2024-05-09 171810](https://github.com/ArnasIc3/Objektinis-programavimas_2/assets/149010264/a13b7a66-5dca-4b84-b773-27ab84b558b7)
+
+</details>
+
+## Su optimizavimo flag'ais (3 strat.)##
+# -O1 #
+
+|-|100000 Greitis|1000000 Greitis|Size|
+|---|---|---|---|
+|STRUCT|6.818|70.706|4,852 KB|
+|CLASS|6.812|73.858|4,811 KB|
+
+# -O2 #
+
+|-|100000 Greitis|1000000 Greitis|Size|
+|---|---|---|---|
+|STRUCT|6.677|70.739|4,854 KB|
+|CLASS|6.640|72.409|4,760 KB|
+
+# -O3 #
+
+|-|100000 Greitis|1000000 Greitis|Size|
+|---|---|---|---|
+|STRUCT|6.639|69.981|5,663 KB|
+|CLASS|6.727|72.497|5,268 KB|
+
 <h1>💣 1.0 TESTAVIMAI: </h1>
 <p>Testavimai atliekami ant:</p>
 
