@@ -8,7 +8,7 @@ void Menu_execute() {
     char calcChoice = ' ';
     string choice;
     do {
-        cout << "Name: 1.1_vect\n";
+        cout << "Name: v1.5\n";
         cout << "Pasirinkite veiksma: " << endl;
         cout << "1 - Uzpildyti ranka" << endl;
         cout << "2 - Sugeneruoti tik pazymius" << endl;

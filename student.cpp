@@ -51,10 +51,7 @@ Studentas& Studentas::operator=(Studentas&& other) noexcept {
     return *this;
 }
 
-//destructor
-Studentas::~Studentas() {
-    cout << "Destruktorius" << endl;
-}
+Studentas::~Studentas() = default;
 
 // Define the calculateGalutinis method for Studentas
 void Studentas::calculateGalutinis(bool useMedian) {
