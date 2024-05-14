@@ -89,8 +89,8 @@ Realizuotos 3 strategijos:
     1 - orginalioji padalinant į dvi grupes skaitant nuo failo.
     2 - vargšiukų išrašymas į kitą failą ir kitus paliekant orginaliame faile. 
     3 - taikant algoritmus pagreitintas veikimas.
-Sūkurtas CMakelists.txt failas kuris leidžia sukompeliuoti tinkamai kodą per VSCode ir buvo pereita prie šio IDE.
-</p>
+Sūkurtas CMakelists.txt failas kuris leidžia sukompeliuoti tinkamai kodą per VSCode ir buvo pereita prie šio IDE.</p>
+<p> v1.1 - pereita iš struct į class. Sutvarkytas kodas, pagal naujus gett'erius ir set'erius. Atlikti testai su -o1, -o2, -o3.</p>
 
 <h1>NEW💣 1.1 TESTAVIMAI: </h1>
 <p>Testavimai atliekami ant:</p>
@@ -126,6 +126,28 @@ CLASS:
   ![Screenshot 2024-05-09 171810](https://github.com/ArnasIc3/Objektinis-programavimas_2/assets/149010264/a13b7a66-5dca-4b84-b773-27ab84b558b7)
 
 </details>
+
+## Su optimizavimo flag'ais (3 strat.)##
+# -O1 #
+
+|-|100000 Greitis|1000000 Greitis|Size|
+|---|---|---|---|
+|STRUCT|6.818|70.706|4,852 KB|
+|CLASS|6.812|73.858|4,811 KB|
+
+# -O2 #
+
+|-|100000 Greitis|1000000 Greitis|Size|
+|---|---|---|---|
+|STRUCT|6.677|70.739|4,854 KB|
+|CLASS|6.640|72.409|4,760 KB|
+
+# -O3 #
+
+|-|100000 Greitis|1000000 Greitis|Size|
+|---|---|---|---|
+|STRUCT|6.639|69.981|5,663 KB|
+|CLASS|6.727|72.497|5,268 KB|
 
 <h1>💣 1.0 TESTAVIMAI: </h1>
 <p>Testavimai atliekami ant:</p>
