@@ -92,6 +92,7 @@ Realizuotos 3 strategijos:
 Sūkurtas CMakelists.txt failas kuris leidžia sukompeliuoti tinkamai kodą per VSCode ir buvo pereita prie šio IDE.</p>
 <p> v1.1 - pereita iš struct į class. Sutvarkytas kodas, pagal naujus gett'erius ir set'erius. Atlikti testai su -o1, -o2, -o3.</p>
 <p> v1.2 - Rule of Five realizavimas su galimu testavimu (main.cpp pakeitus runTests iš False į True ir atvirkčiai) + I/O operatoriai. </p>
+<p> v1.5 - realizuota abstrakti klasė "Zmogus". (objektų kūrimas negalimas)</p>
 
 <h1>💣 1.2 RULE OF FIVE IR I/O OPERATORIAI: </h1>
  
