@@ -107,11 +107,11 @@ Destructorius, kopijavimo konstruktorius, kopijavimo priskyrimo operatorius, per
 ## Įvesties ir išvesties operatoriai ##
 Įvesties (>>) ir išvesties (<<) operatoriai buvo perkrauti Studentas klasei.
 
-Įvesties operatorius apibrėžtas taip:
-![image](https://github.com/ArnasIc3/Objektinis-programavimas_2/assets/149010264/ba5b791d-7921-4a9f-b985-0dcaf5283b46)
+Įvesties operatorius apibrėžtas taip:<br>
+![image](https://github.com/ArnasIc3/Objektinis-programavimas_2/assets/149010264/ba5b791d-7921-4a9f-b985-0dcaf5283b46) <br>
 Tai leidžia skaityti studento vardą ir pavardę iš įvesties srauto (pvz., std::cin ar std::ifstream objekto) tiesiai į Studentas objektą.
 
-Išvesties operatorius apibrėžtas taip:
+Išvesties operatorius apibrėžtas taip: 
 std::ostream& operator<<(std::ostream& os, const Studentas& student) {
     os << left << setw(15) << student.getPavarde() << left << setw(15) << student.getVardas() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis();
     return os;
