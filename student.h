@@ -18,7 +18,19 @@
 using namespace std;
 using namespace std::chrono;
 
-class Studentas{
+class Zmogus{
+    public: 
+    virtual ~Zmogus() = default;
+
+    //geteriai
+    virtual std::string getVardas() const = 0;
+    virtual std::string getPavarde() const = 0;
+    virtual const std::vector<int>& getND() const = 0;
+    virtual double getGalutinis() const = 0;
+    virtual double getEgzaminas() = 0;
+};
+
+class Studentas: public Zmogus{
 private:
     std::string vardas_;
     std::string pavarde_;

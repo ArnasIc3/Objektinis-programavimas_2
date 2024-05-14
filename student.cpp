@@ -111,8 +111,8 @@ double useMediana(const vector<int>& grades) {
 void Ivedimas(vector<Studentas>& stud, bool randomNames, bool randomGrades, bool studentCount) {
     bool moreStudents = true;
     while (moreStudents) {
-        Studentas student; // Declare a Studentas object
-
+        //Zmogus zmogus; // Zmogus (not working because it's an abstract class)
+        Studentas student;
         if (!randomNames && !studentCount) {
             cout << "Iveskite studento varda ir pavarde: ";
             cin >> student; //input operator
