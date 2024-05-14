@@ -91,7 +91,8 @@ Realizuotos 3 strategijos:
     3 - taikant algoritmus pagreitintas veikimas.
 Sūkurtas CMakelists.txt failas kuris leidžia sukompeliuoti tinkamai kodą per VSCode ir buvo pereita prie šio IDE.
 </p>
-
+<p> v1.1 - pereita iš struct į class. Sutvarkytas kodas, pagal naujus gett'erius ir set'erius. Atlikti testai su -o1, -o2, -o3.</p>
+<p> v1.2 - Rule of Five implementacija + I/O operatoriai.</p>
 <h1>💣 1.0 TESTAVIMAI: </h1>
 <p>Testavimai atliekami ant:</p>
 
