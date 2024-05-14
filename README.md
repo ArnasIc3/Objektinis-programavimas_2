@@ -101,7 +101,8 @@ RULE OF FIVE yra C++ programavimo kalbos taisyklė, kuri nurodo, kad jei klasė 
  - Kopijavimo konstruktorius
  - Kopijavimo priskyrimo operatorius
  - Perkėlimo konstruktorius
- - Perkėlimo priskyrimo operatorius
+ - Perkėlimo priskyrimo operatorius <br>\
+
 Destructorius, kopijavimo konstruktorius, kopijavimo priskyrimo operatorius, perkėlimo konstruktorius ir perkėlimo priskyrimo operatorius yra apibrėžti. Tai užtikrina tinkamą išteklių valdymą, kai Studentas objektai yra kopijuojami arba perkeliami.
 
 ## Įvesties ir išvesties operatoriai ##
