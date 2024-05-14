@@ -111,11 +111,9 @@ Destructorius, kopijavimo konstruktorius, kopijavimo priskyrimo operatorius, per
 ![image](https://github.com/ArnasIc3/Objektinis-programavimas_2/assets/149010264/ba5b791d-7921-4a9f-b985-0dcaf5283b46) <br>
 Tai leidžia skaityti studento vardą ir pavardę iš įvesties srauto (pvz., std::cin ar std::ifstream objekto) tiesiai į Studentas objektą.
 
-Išvesties operatorius apibrėžtas taip: 
-std::ostream& operator<<(std::ostream& os, const Studentas& student) {
-    os << left << setw(15) << student.getPavarde() << left << setw(15) << student.getVardas() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis();
-    return os;
-}
+Išvesties operatorius apibrėžtas taip: <br>
+![image](https://github.com/ArnasIc3/Objektinis-programavimas_2/assets/149010264/f381449e-2e06-4375-b1a6-b858ca5c7726) <br>
+
 Tai leidžia išvesti studento pavardę, vardą ir galutinį balą į išvesties srautą (pvz., std::cout ar std::ofstream objektą) tiesiai iš Studentas objekto.
 <h1>💣 1.1 TESTAVIMAI: </h1>
 <p>Testavimai atliekami ant:</p>
