@@ -18,7 +18,7 @@
 using namespace std;
 using namespace std::chrono;
 
-class Studentas {
+class Studentas{
 private:
     std::string vardas_;
     std::string pavarde_;

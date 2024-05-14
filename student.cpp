@@ -4,9 +4,15 @@ const int NUM_NAMES = 10;
 vector<string> vardai = { "Jonas", "Petras", "Algis", "Marius", "Gintaras", "Tomas", "Lukas", "Simas", "Gabrielius", "Olegas" };
 vector<string> pavardes = { "Kelmutis", "Kelmutaite", "Dangavicius", "Pieliauskas", "Lukavicius", "Simonavicius", "Skaudavicius", "Juzenas", "Darbavicius", "Stankevicius" };
 
-// Constructor
-Studentas::Studentas() {}
+// Default constructor
+Studentas::Studentas()
+    : vardas_(""), pavarde_(""), egzaminas_(0.0), nd_() 
+{}
 
+// Constructor with parameters
+Studentas::Studentas(const std::string& vardas, const std::string& pavarde, double egzaminas, const std::vector<int>& nd)
+    : vardas_(vardas), pavarde_(pavarde), egzaminas_(egzaminas), nd_(nd) 
+{}
 // Copy assignment operator
 Studentas& Studentas::operator=(const Studentas& other) {
     if (this != &other) {
@@ -19,13 +25,20 @@ Studentas& Studentas::operator=(const Studentas& other) {
 }
 
 //Copy constructor
-Studentas::Studentas(const Studentas& other)
-    : vardas_(other.vardas_), pavarde_(other.pavarde_), egzaminas_(other.egzaminas_), nd_(other.nd_) {}
+Studentas::Studentas(const Studentas& other){
+    vardas_ = other.vardas_;
+    pavarde_ = other.pavarde_;
+    egzaminas_ = other.egzaminas_;
+    nd_ = other.nd_;
+}
 
 // Move constructor
 Studentas::Studentas(Studentas&& other) noexcept
-    : vardas_(std::move(other.vardas_)), pavarde_(std::move(other.pavarde_)),
-      egzaminas_(other.egzaminas_), nd_(std::move(other.nd_)) {}
+    : vardas_(std::move(other.vardas_)), 
+      pavarde_(std::move(other.pavarde_)),
+      egzaminas_(other.egzaminas_), 
+      nd_(std::move(other.nd_)) 
+{}
 
 // Move assignment operator
 Studentas& Studentas::operator=(Studentas&& other) noexcept {
@@ -39,7 +52,9 @@ Studentas& Studentas::operator=(Studentas&& other) noexcept {
 }
 
 //destructor
-Studentas::~Studentas() {}
+Studentas::~Studentas() {
+    cout << "Destruktorius" << endl;
+}
 
 // Define the calculateGalutinis method for Studentas
 void Studentas::calculateGalutinis(bool useMedian) {
@@ -56,6 +71,21 @@ void Studentas::calculateGalutinis(bool useMedian) {
             setGalutinis(0.4 * vidurkis + 0.6 * egzaminas_);
         }
     }
+}
+
+// the output operator
+std::ostream& operator<<(std::ostream& os, const Studentas& student) {
+    os << left << setw(15) << student.getPavarde() << left << setw(15) << student.getVardas() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis();
+    return os;
+}
+
+// input operator
+std::istream& operator>>(std::istream& is, Studentas& student) {
+    string vardas, pavarde;
+    is >> vardas >> pavarde;
+    student.setVardas(vardas);
+    student.setPavarde(pavarde);
+    return is;
 }
 
 bool isNumber(const string& str) {
@@ -85,10 +115,7 @@ void Ivedimas(vector<Studentas>& stud, bool randomNames, bool randomGrades, bool
 
         if (!randomNames && !studentCount) {
             cout << "Iveskite studento varda ir pavarde: ";
-            string vardas, pavarde;
-            cin >> vardas >> pavarde;
-            student.setVardas(vardas); // Use the student object
-            student.setPavarde(pavarde); // Use the student object
+            cin >> student; //input operator
         }
         else {
             int randIndex = rand() % NUM_NAMES;
@@ -149,8 +176,9 @@ void Spausdinimas(const vector<Studentas>& stud, bool Mediana) {
     }
     cout << endl;
     cout << "--------------------------------------------" << endl;
+
     for (const auto& student : stud) {
-        cout << left << setw(15) << student.getPavarde() << left << setw(15) << student.getVardas() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis() << endl;
+        cout << student << endl; //output operator
     }
 }
 
