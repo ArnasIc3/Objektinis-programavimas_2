@@ -1,0 +1,35 @@
+cmake_minimum_required(VERSION 3.10)
+
+# set the project name
+project(StudentasTest)
+
+# specify the C++ standard
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+# GoogleTest requires at least C++11
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
+# Add the path to the GoogleTest CMake module to CMAKE_MODULE_PATH
+list(APPEND CMAKE_MODULE_PATH /usr/src/gtest)
+
+# Enable testing for the project
+enable_testing()
+
+# Find the GoogleTest package
+find_package(GTest REQUIRED)
+
+# Add the GoogleTest include directories
+include_directories(${GTEST_INCLUDE_DIRS})
+
+# Add the source files
+set(SOURCE_FILES student.cpp test.cpp)
+
+# Add the executable
+add_executable(StudentasTest ${SOURCE_FILES})
+
+# Link the GoogleTest libraries
+target_link_libraries(StudentasTest ${GTEST_BOTH_LIBRARIES})
+
+# Link the pthread library
+target_link_libraries(StudentasTest pthread)
