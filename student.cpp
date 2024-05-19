@@ -5,14 +5,12 @@ vector<string> vardai = { "Jonas", "Petras", "Algis", "Marius", "Gintaras", "Tom
 vector<string> pavardes = { "Kelmutis", "Kelmutaite", "Dangavicius", "Pieliauskas", "Lukavicius", "Simonavicius", "Skaudavicius", "Juzenas", "Darbavicius", "Stankevicius" };
 
 // Default constructor
-Studentas::Studentas()
-    : vardas_(""), pavarde_(""), egzaminas_(0.0), nd_() 
-{}
+Studentas::Studentas() : vardas_(""), pavarde_(""), egzaminas_(0.0) {}
 
 // Constructor with parameters
 Studentas::Studentas(const std::string& vardas, const std::string& pavarde, double egzaminas, const std::vector<int>& nd)
-    : vardas_(vardas), pavarde_(pavarde), egzaminas_(egzaminas), nd_(nd) 
-{}
+    : vardas_(vardas), pavarde_(pavarde), egzaminas_(egzaminas), nd_(nd) {}
+
 // Copy assignment operator
 Studentas& Studentas::operator=(const Studentas& other) {
     if (this != &other) {
@@ -25,20 +23,15 @@ Studentas& Studentas::operator=(const Studentas& other) {
 }
 
 //Copy constructor
-Studentas::Studentas(const Studentas& other){
-    vardas_ = other.vardas_;
-    pavarde_ = other.pavarde_;
-    egzaminas_ = other.egzaminas_;
-    nd_ = other.nd_;
-}
+Studentas::Studentas(const Studentas& other)
+    : vardas_(other.vardas_), pavarde_(other.pavarde_), egzaminas_(other.egzaminas_), nd_(other.nd_) {}
 
 // Move constructor
 Studentas::Studentas(Studentas&& other) noexcept
-    : vardas_(std::move(other.vardas_)), 
-      pavarde_(std::move(other.pavarde_)),
-      egzaminas_(other.egzaminas_), 
-      nd_(std::move(other.nd_)) 
-{}
+    : vardas_(std::move(other.vardas_)),
+    pavarde_(std::move(other.pavarde_)),
+    egzaminas_(other.egzaminas_),
+    nd_(std::move(other.nd_)) {}
 
 // Move assignment operator
 Studentas& Studentas::operator=(Studentas&& other) noexcept {
@@ -54,25 +47,25 @@ Studentas& Studentas::operator=(Studentas&& other) noexcept {
 Studentas::~Studentas() = default;
 
 // Define the calculateGalutinis method for Studentas
-void Studentas::calculateGalutinis(bool useMedian) {
+double Studentas::calculateGalutinis() const {
     if (nd_.empty()) {
-        setGalutinis(egzaminas_);
+        return 1; // Return 0 if the list of grades is empty
     }
     else {
-        double nd_sum = accumulate(nd_.begin(), nd_.end(), 0);
+        double nd_sum = std::accumulate(nd_.begin(), nd_.end(), 0);
         double vidurkis = nd_sum / nd_.size();
         if (useMedian) {
-            setGalutinis(0.4 * useMediana(nd_) + 0.6 * egzaminas_);
+            return 0.4 * useMediana(nd_) + 0.6 * egzaminas_;
         }
         else {
-            setGalutinis(0.4 * vidurkis + 0.6 * egzaminas_);
+            return 0.4 * vidurkis + 0.6 * egzaminas_;
         }
     }
 }
 
 // the output operator
 std::ostream& operator<<(std::ostream& os, const Studentas& student) {
-    os << left << setw(15) << student.getPavarde() << left << setw(15) << student.getVardas() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis();
+    os << left << setw(15) << student.getPavarde() << left << setw(15) << student.getVardas() << left << setw(15) << fixed << setprecision(2) << student.calculateGalutinis();
     return os;
 }
 
@@ -108,7 +101,7 @@ double useMediana(const vector<int>& grades) {
 void Ivedimas(vector<Studentas>& stud, bool randomNames, bool randomGrades, bool studentCount) {
     bool moreStudents = true;
     while (moreStudents) {
-        //Zmogus zmogus; // Zmogus (not working because it's an abstract class)
+        //Zmogus zmogus; // Zmogus (neveikia nes yra abstrakti klase)
         Studentas student;
         if (!randomNames && !studentCount) {
             cout << "Iveskite studento varda ir pavarde: ";
@@ -179,7 +172,7 @@ void Spausdinimas(const vector<Studentas>& stud, bool Mediana) {
     }
 }
 
-void sortStudents(vector<Studentas>& students, const string& sortBy) {
+void sortStudents(vector<Studentas>& students, const string& sortBy, bool Mediana) {
     if (sortBy == "V" || sortBy == "v") {
         sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
             return a.getVardas() < b.getVardas();
@@ -191,9 +184,9 @@ void sortStudents(vector<Studentas>& students, const string& sortBy) {
             });
     }
     else if (sortBy == "G" || sortBy == "g") {
-        sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
-            return a.getGalutinis() > b.getGalutinis();
-            });
+        sort(students.begin(), students.end(), [Mediana](const Studentas& a, const Studentas& b) {
+            return a.calculateGalutinis() > b.calculateGalutinis();
+        });
     }
     else {
         cout << "Neteisingas rikiavimo pasirinkimas. Vykdomas rikiavimas pagal varda." << endl;
@@ -208,14 +201,24 @@ void Pasirinkimai(vector<Studentas>& students)
     char calcChoice;
     cout << "Pasirinkite skaiciavimo metoda (V - vidurkis, M - mediana): ";
     cin >> calcChoice;
+    calcChoice = toupper(calcChoice); // Convert to uppercase to handle both cases
+
+    // Check if the user input is valid
+    while (calcChoice != 'V' && calcChoice != 'M') {
+        cout << "Neteisingas pasirinkimas. Pasirinkite V arba M: ";
+        cin >> calcChoice;
+        calcChoice = toupper(calcChoice);
+    }
+
     string sortBy;
     cout << "Pasirinkite, kaip norite surusiuoti studentus (V, P, G, EGZ): ";
     cin >> sortBy;
-    bool Mediana = (toupper(calcChoice) == 'M');
+
+    bool Mediana = (calcChoice == 'M');
     for (auto& student : students) {
-        student.calculateGalutinis(Mediana);
+        student.calculateGalutinis();
     }
-    sortStudents(students, sortBy);
+    sortStudents(students, sortBy, Mediana);
     Spausdinimas(students, Mediana);
 }
 
@@ -262,8 +265,8 @@ void Generacija(int Pas) {
             return;
         }
 
-        ofstream highGradesFile(".galvociai_" + to_string(fileIndex) + ".txt");
-        ofstream lowGradesFile(".nuskriaustukai_" + to_string(fileIndex) + ".txt");
+        ofstream highGradesFile(".galvociai" + to_string(fileIndex) + ".txt");
+        ofstream lowGradesFile(".nuskriaustukai" + to_string(fileIndex) + ".txt");
 
         if (!highGradesFile || !lowGradesFile) {
             cerr << "Error creating output files." << endl;
@@ -294,16 +297,18 @@ void Generacija(int Pas) {
                 nd.pop_back();
             }
             student.setNd(nd);
-            double nd_sum = accumulate(nd.begin(), nd.end(), 0);
-            double vidurkis = nd_sum / nd.size();
-            student.calculateGalutinis(false);
-        
+            student.calculateGalutinis();
             // Add student to appropriate vector based on final grade
-            if (student.getGalutinis() >= 5)
+            if (student.calculateGalutinis() >= 5)
+            {
                 highGrades.push_back(student);
-            else
+            }
+            else{
                 lowGrades.push_back(student);
+            }
         }
+        cout << "Number of high grade students: " << highGrades.size() << endl;
+        cout << "Number of low grade students: " << lowGrades.size() << endl;
 
         auto stopSort = high_resolution_clock::now();
 
@@ -311,12 +316,14 @@ void Generacija(int Pas) {
         // Write high and low grade students to separate files
         highGradesFile << "Vardas    Pavarde  Galutinis (Vid.)" << endl;
         for (const auto& student : highGrades) {
-            highGradesFile << left << setw(15) << student.getVardas() << left << setw(15) << student.getPavarde() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis() << endl;
+            double finalGrade = student.calculateGalutinis();
+            highGradesFile << setw(15) << student.getVardas() << setw(15) << student.getPavarde() << fixed << setprecision(2) << " " << finalGrade << endl;
         }
         
         lowGradesFile << "Vardas    Pavarde  Galutinis (Vid.)" << endl;
         for (const auto& student : lowGrades) {
-            lowGradesFile << left << setw(15) << student.getVardas() << left << setw(15) << student.getPavarde() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis() << endl;
+            double finalGrade = student.calculateGalutinis();
+            lowGradesFile << left << setw(15) << student.getVardas() << left << setw(15) << student.getPavarde() << left << setw(15) << fixed << setprecision(2) << " " << finalGrade << endl;
         }
         auto stopOutput = high_resolution_clock::now();
         auto durationOutput = duration_cast<milliseconds>(stopOutput - startOutput);
@@ -371,12 +378,10 @@ void Generacija(int Pas) {
                     nd.pop_back();
                 }
                 student.setNd(nd);
-                double nd_sum = accumulate(nd.begin(), nd.end(), 0);
-                double vidurkis = nd_sum / nd.size();
-                student.calculateGalutinis(false);
+                student.calculateGalutinis();
         
                 // Add student to appropriate vector based on final grade
-                if (student.getGalutinis() < 5)
+                if (student.calculateGalutinis() <= 5)
                     lowGrades.push_back(student);
             }
             auto stopSort = high_resolution_clock::now();
@@ -385,7 +390,8 @@ void Generacija(int Pas) {
             auto startOutput = high_resolution_clock::now();
             lowGradesFile << "Vardas    Pavarde  Galutinis (Vid.)" << endl;
             for (const auto& student : lowGrades) {
-                lowGradesFile << left << setw(15) << student.getVardas() << left << setw(15) << student.getPavarde() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis() << endl;
+                double finalGrade = student.calculateGalutinis();
+                lowGradesFile << left << setw(15) << student.getVardas() << left << setw(15) << student.getPavarde() << left << setw(15) << fixed << setprecision(2) << " " << finalGrade << endl;
             }
             auto stopOutput = high_resolution_clock::now();
             auto durationOutput = duration_cast<milliseconds>(stopOutput - startOutput);
@@ -427,7 +433,7 @@ void Generacija(int Pas) {
                 student.setNd(nd);
                 double nd_sum = accumulate(nd.begin(), nd.end(), 0);
                 double vidurkis = nd_sum / nd.size();
-                student.calculateGalutinis(false);
+                student.calculateGalutinis();
                 students.push_back(student);
             }   
 
@@ -440,7 +446,7 @@ void Generacija(int Pas) {
             vector<Studentas> lowGradeStudents;
         
             for (auto& student : students) {
-                if (student.getGalutinis() >= 5.0) {
+                if (student.calculateGalutinis() >= 5.0) {
                     highGradeStudents.push_back(student);
                 } else {
                     lowGradeStudents.push_back(student);
@@ -457,12 +463,14 @@ void Generacija(int Pas) {
         
             // Write high grade students to highGradesFile
             for (auto& student : highGradeStudents) {
-                highGradesFile << student.getVardas().c_str() << " " << student.getPavarde().c_str() << " " << student.getGalutinis() << "\n";
+                double finalGrade = student.calculateGalutinis();
+                highGradesFile << student.getVardas().c_str() << " " << student.getPavarde().c_str() << " " << finalGrade << "\n";
             }
             
             // Write low grade students to lowGradesFile
             for (auto& student : lowGradeStudents) {
-                lowGradesFile << student.getVardas().c_str() << " " << student.getPavarde().c_str() << " " << student.getGalutinis() << "\n";
+                double finalGrade = student.calculateGalutinis();
+                lowGradesFile << student.getVardas().c_str() << " " << student.getPavarde().c_str() << " " << finalGrade << "\n";
             }
             highGradesFile.close();
             lowGradesFile.close();

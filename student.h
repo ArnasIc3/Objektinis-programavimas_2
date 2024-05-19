@@ -14,6 +14,11 @@
 #include <cctype>
 #include <cmath>
 #include <chrono>
+#include <random>
+#include <iterator>
+#include <functional>
+#include <stdexcept>
+
 
 using namespace std;
 using namespace std::chrono;
@@ -26,7 +31,6 @@ class Zmogus{
     virtual std::string getVardas() const = 0;
     virtual std::string getPavarde() const = 0;
     virtual const std::vector<int>& getND() const = 0;
-    virtual double getGalutinis() const = 0;
     virtual double getEgzaminas() = 0;
 };
 
@@ -36,14 +40,13 @@ private:
     std::string pavarde_;
     double egzaminas_;
     std::vector<int> nd_;
-    double galutinis_;
-
+    bool useMedian;
 public:
         // Default constructor
         Studentas();
 
         // Constructor with parameters
-        Studentas(const std::string& vardas_, const std::string& pavarde_, double galutinis_, const std::vector<int>& nd_);
+        Studentas(const std::string& vardas_, const std::string& pavarde_, double egzaminas_, const std::vector<int>& nd_);
 
         // Copy constructor
         Studentas(const Studentas& other);
@@ -64,7 +67,6 @@ public:
         inline std::string getVardas() const { return vardas_; } 
         inline std::string getPavarde() const { return pavarde_; }
         const std::vector<int>& getND() const { return nd_; }
-        double getGalutinis() const { return galutinis_; }
         double getEgzaminas() { return egzaminas_; }
 
         // Setters
@@ -72,9 +74,12 @@ public:
         void setPavarde(const std::string& pavarde) { pavarde_ = pavarde; }
         void setEgzaminas(double egzaminas) { egzaminas_ = egzaminas; }
         void setNd(const std::vector<int>& nd) { nd_ = nd; }
-        void setGalutinis(double galutinis) { this->galutinis_ = galutinis;}
+
+        // Other functions
+        void setUseMedian(bool useMedian) {this -> useMedian = useMedian; }
+        bool getUseMedian() const { return useMedian; }
         // Calculate the final grade
-        void calculateGalutinis(bool useMedian); // Add the missing implementation
+        double calculateGalutinis() const; // Add the missing implementation
 };
 
 // Comparison functions for sorting
