@@ -93,8 +93,14 @@ Sūkurtas CMakelists.txt failas kuris leidžia sukompeliuoti tinkamai kodą per 
 <p> v1.1 - pereita iš struct į class. Sutvarkytas kodas, pagal naujus gett'erius ir set'erius. Atlikti testai su -o1, -o2, -o3.</p>
 <p> v1.2 - Rule of Five realizavimas su galimu testavimu (main.cpp pakeitus runTests iš False į True ir atvirkčiai) + I/O operatoriai. </p>
 <p> v1.5 - realizuota abstrakti klasė "Zmogus". (objektų kūrimas negalimas)</p>
+<p> v2.0 - dokumentacija naudojant doxygen programine įranga (html ir pdf failai). Naudojant Google test (arba gtest), atlikti unit test'ai patikrinti konstruktorių veikimą klasėje. (konstruktorius, konstruktorius su parametrais, seteriai ir geteriai)</p>
 
-<h1>💣 1.2 RULE OF FIVE IR I/O OPERATORIAI: </h1>
+<h1>💣 2.0 UNIT TESTAS: </h1>
+
+## UNIT TEST ##
+![image](https://github.com/ArnasIc3/Objektinis-programavimas_2/assets/149010264/3c3cb286-0b27-49fb-aef9-2ccb89b5a8c3)
+
+<h1> 1.2 RULE OF FIVE IR I/O OPERATORIAI: </h1>
  
 ## RULE OF FIVE ##
 RULE OF FIVE yra C++ programavimo kalbos taisyklė, kuri nurodo, kad jei klasė apibrėžia arba ištrina bet kurį iš šių narių funkcijų, ji turėtų apibrėžti arba ištrinti visus iš jų:
