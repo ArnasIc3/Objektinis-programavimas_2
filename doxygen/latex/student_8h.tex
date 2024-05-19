@@ -1,0 +1,104 @@
+\doxysubsection{student.\+h File Reference}
+\label{student_8h}\index{student.h@{student.h}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$numeric$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$cctype$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include $<$iterator$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+\doxysubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \textbf{ Zmogus}
+\item 
+class \textbf{ Studentas}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \textbf{ compare} (const \textbf{ Studentas} \&, const \textbf{ Studentas} \&)
+\item 
+bool \textbf{ compare\+Pagal\+Pavarde} (const \textbf{ Studentas} \&, const \textbf{ Studentas} \&)
+\item 
+bool \textbf{ compare\+Pagal\+Egza} (const \textbf{ Studentas} \&, const \textbf{ Studentas} \&)
+\item 
+void \textbf{ Ivedimas} (vector$<$ \textbf{ Studentas} $>$ \&stud, bool random\+Names=false, bool random\+Grades=false, bool student\+Count=false)
+\item 
+void \textbf{ Pasirinkimai} (vector$<$ \textbf{ Studentas} $>$ \&students)
+\item 
+void \textbf{ Spausdinimas} (const vector$<$ \textbf{ Studentas} $>$ \&students, bool Mediana)
+\item 
+bool \textbf{ is\+Number} (const string \&str)
+\item 
+double \textbf{ use\+Mediana} (const vector$<$ int $>$ \&grades)
+\item 
+void \textbf{ Generacija} (int Pas)
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Function Documentation}
+\label{student_8h_a385294361f54e09577f1cbbbc4b1e557} 
+\index{student.h@{student.h}!compare@{compare}}
+\index{compare@{compare}!student.h@{student.h}}
+\doxyparagraph{compare()}
+{\footnotesize\ttfamily bool compare (\begin{DoxyParamCaption}\item[{const \textbf{ Studentas} \&}]{,  }\item[{const \textbf{ Studentas} \&}]{ }\end{DoxyParamCaption})}
+
+\label{student_8h_aa6ab21c69c12cde861ce79c74365d3bb} 
+\index{student.h@{student.h}!comparePagalEgza@{comparePagalEgza}}
+\index{comparePagalEgza@{comparePagalEgza}!student.h@{student.h}}
+\doxyparagraph{comparePagalEgza()}
+{\footnotesize\ttfamily bool compare\+Pagal\+Egza (\begin{DoxyParamCaption}\item[{const \textbf{ Studentas} \&}]{,  }\item[{const \textbf{ Studentas} \&}]{ }\end{DoxyParamCaption})}
+
+\label{student_8h_a4664637b436e124fa3a31746dc402883} 
+\index{student.h@{student.h}!comparePagalPavarde@{comparePagalPavarde}}
+\index{comparePagalPavarde@{comparePagalPavarde}!student.h@{student.h}}
+\doxyparagraph{comparePagalPavarde()}
+{\footnotesize\ttfamily bool compare\+Pagal\+Pavarde (\begin{DoxyParamCaption}\item[{const \textbf{ Studentas} \&}]{,  }\item[{const \textbf{ Studentas} \&}]{ }\end{DoxyParamCaption})}
+
+\label{student_8h_abce9a98125e98e32521a1a0eeaa9ccf7} 
+\index{student.h@{student.h}!Generacija@{Generacija}}
+\index{Generacija@{Generacija}!student.h@{student.h}}
+\doxyparagraph{Generacija()}
+{\footnotesize\ttfamily void Generacija (\begin{DoxyParamCaption}\item[{int}]{Pas }\end{DoxyParamCaption})}
+
+\label{student_8h_a32365e377c80c8e22cf61b4f94ae1b02} 
+\index{student.h@{student.h}!isNumber@{isNumber}}
+\index{isNumber@{isNumber}!student.h@{student.h}}
+\doxyparagraph{isNumber()}
+{\footnotesize\ttfamily bool is\+Number (\begin{DoxyParamCaption}\item[{const string \&}]{str }\end{DoxyParamCaption})}
+
+\label{student_8h_a8c06ec9ac9ec6bc321374694cbc46bf9} 
+\index{student.h@{student.h}!Ivedimas@{Ivedimas}}
+\index{Ivedimas@{Ivedimas}!student.h@{student.h}}
+\doxyparagraph{Ivedimas()}
+{\footnotesize\ttfamily void Ivedimas (\begin{DoxyParamCaption}\item[{vector$<$ \textbf{ Studentas} $>$ \&}]{stud,  }\item[{bool}]{random\+Names = {\ttfamily false},  }\item[{bool}]{random\+Grades = {\ttfamily false},  }\item[{bool}]{student\+Count = {\ttfamily false} }\end{DoxyParamCaption})}
+
+\label{student_8h_ad099de49b8ab204799f99546a7103850} 
+\index{student.h@{student.h}!Pasirinkimai@{Pasirinkimai}}
+\index{Pasirinkimai@{Pasirinkimai}!student.h@{student.h}}
+\doxyparagraph{Pasirinkimai()}
+{\footnotesize\ttfamily void Pasirinkimai (\begin{DoxyParamCaption}\item[{vector$<$ \textbf{ Studentas} $>$ \&}]{students }\end{DoxyParamCaption})}
+
+\label{student_8h_ad20e5a10b37cab2b6c00ac29365f16fa} 
+\index{student.h@{student.h}!Spausdinimas@{Spausdinimas}}
+\index{Spausdinimas@{Spausdinimas}!student.h@{student.h}}
+\doxyparagraph{Spausdinimas()}
+{\footnotesize\ttfamily void Spausdinimas (\begin{DoxyParamCaption}\item[{const vector$<$ \textbf{ Studentas} $>$ \&}]{students,  }\item[{bool}]{Mediana }\end{DoxyParamCaption})}
+
+\label{student_8h_a8e8b00072aecfaa66e3be28488c2e382} 
+\index{student.h@{student.h}!useMediana@{useMediana}}
+\index{useMediana@{useMediana}!student.h@{student.h}}
+\doxyparagraph{useMediana()}
+{\footnotesize\ttfamily double use\+Mediana (\begin{DoxyParamCaption}\item[{const vector$<$ int $>$ \&}]{grades }\end{DoxyParamCaption})}
+

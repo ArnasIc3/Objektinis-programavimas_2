@@ -1,0 +1,111 @@
+\doxysubsection{student.\+cpp File Reference}
+\label{student_8cpp}\index{student.cpp@{student.cpp}}
+{\ttfamily \#include "{}student.\+h"{}}\newline
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \textbf{ operator$<$$<$} (std\+::ostream \&os, const \textbf{ Studentas} \&student)
+\item 
+std\+::istream \& \textbf{ operator$>$$>$} (std\+::istream \&is, \textbf{ Studentas} \&student)
+\item 
+bool \textbf{ is\+Number} (const string \&str)
+\item 
+double \textbf{ use\+Mediana} (const vector$<$ int $>$ \&grades)
+\item 
+void \textbf{ Ivedimas} (vector$<$ \textbf{ Studentas} $>$ \&stud, bool random\+Names, bool random\+Grades, bool student\+Count)
+\item 
+void \textbf{ Spausdinimas} (const vector$<$ \textbf{ Studentas} $>$ \&stud, bool Mediana)
+\item 
+void \textbf{ sort\+Students} (vector$<$ \textbf{ Studentas} $>$ \&students, const string \&sort\+By)
+\item 
+void \textbf{ Pasirinkimai} (vector$<$ \textbf{ Studentas} $>$ \&students)
+\item 
+void \textbf{ Generacija} (int Pas)
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \textbf{ NUM\+\_\+\+NAMES} = 10
+\item 
+vector$<$ string $>$ \textbf{ vardai} = \{ "{}Jonas"{}, "{}Petras"{}, "{}Algis"{}, "{}Marius"{}, "{}Gintaras"{}, "{}Tomas"{}, "{}Lukas"{}, "{}Simas"{}, "{}Gabrielius"{}, "{}Olegas"{} \}
+\item 
+vector$<$ string $>$ \textbf{ pavardes} = \{ "{}Kelmutis"{}, "{}Kelmutaite"{}, "{}Dangavicius"{}, "{}Pieliauskas"{}, "{}Lukavicius"{}, "{}Simonavicius"{}, "{}Skaudavicius"{}, "{}Juzenas"{}, "{}Darbavicius"{}, "{}Stankevicius"{} \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Function Documentation}
+\label{student_8cpp_abce9a98125e98e32521a1a0eeaa9ccf7} 
+\index{student.cpp@{student.cpp}!Generacija@{Generacija}}
+\index{Generacija@{Generacija}!student.cpp@{student.cpp}}
+\doxyparagraph{Generacija()}
+{\footnotesize\ttfamily void Generacija (\begin{DoxyParamCaption}\item[{int}]{Pas }\end{DoxyParamCaption})}
+
+\label{student_8cpp_a32365e377c80c8e22cf61b4f94ae1b02} 
+\index{student.cpp@{student.cpp}!isNumber@{isNumber}}
+\index{isNumber@{isNumber}!student.cpp@{student.cpp}}
+\doxyparagraph{isNumber()}
+{\footnotesize\ttfamily bool is\+Number (\begin{DoxyParamCaption}\item[{const string \&}]{str }\end{DoxyParamCaption})}
+
+\label{student_8cpp_afc1258653cd1c8124f36c95f52970b3d} 
+\index{student.cpp@{student.cpp}!Ivedimas@{Ivedimas}}
+\index{Ivedimas@{Ivedimas}!student.cpp@{student.cpp}}
+\doxyparagraph{Ivedimas()}
+{\footnotesize\ttfamily void Ivedimas (\begin{DoxyParamCaption}\item[{vector$<$ \textbf{ Studentas} $>$ \&}]{stud,  }\item[{bool}]{random\+Names,  }\item[{bool}]{random\+Grades,  }\item[{bool}]{student\+Count }\end{DoxyParamCaption})}
+
+\label{student_8cpp_a35a55ed851dc9695ac44fbc880766631} 
+\index{student.cpp@{student.cpp}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!student.cpp@{student.cpp}}
+\doxyparagraph{operator$<$$<$()}
+{\footnotesize\ttfamily std\+::ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \textbf{ Studentas} \&}]{student }\end{DoxyParamCaption})}
+
+\label{student_8cpp_a7881fc1a8559fe66fee6bf84b1f79968} 
+\index{student.cpp@{student.cpp}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!student.cpp@{student.cpp}}
+\doxyparagraph{operator$>$$>$()}
+{\footnotesize\ttfamily std\+::istream \& operator$>$$>$ (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is,  }\item[{\textbf{ Studentas} \&}]{student }\end{DoxyParamCaption})}
+
+\label{student_8cpp_ad099de49b8ab204799f99546a7103850} 
+\index{student.cpp@{student.cpp}!Pasirinkimai@{Pasirinkimai}}
+\index{Pasirinkimai@{Pasirinkimai}!student.cpp@{student.cpp}}
+\doxyparagraph{Pasirinkimai()}
+{\footnotesize\ttfamily void Pasirinkimai (\begin{DoxyParamCaption}\item[{vector$<$ \textbf{ Studentas} $>$ \&}]{students }\end{DoxyParamCaption})}
+
+\label{student_8cpp_af319d8e85dfe4cbef5ab2f7e0902ca43} 
+\index{student.cpp@{student.cpp}!sortStudents@{sortStudents}}
+\index{sortStudents@{sortStudents}!student.cpp@{student.cpp}}
+\doxyparagraph{sortStudents()}
+{\footnotesize\ttfamily void sort\+Students (\begin{DoxyParamCaption}\item[{vector$<$ \textbf{ Studentas} $>$ \&}]{students,  }\item[{const string \&}]{sort\+By }\end{DoxyParamCaption})}
+
+\label{student_8cpp_a2792106110cba1c5afd006350530c23d} 
+\index{student.cpp@{student.cpp}!Spausdinimas@{Spausdinimas}}
+\index{Spausdinimas@{Spausdinimas}!student.cpp@{student.cpp}}
+\doxyparagraph{Spausdinimas()}
+{\footnotesize\ttfamily void Spausdinimas (\begin{DoxyParamCaption}\item[{const vector$<$ \textbf{ Studentas} $>$ \&}]{stud,  }\item[{bool}]{Mediana }\end{DoxyParamCaption})}
+
+\label{student_8cpp_a8e8b00072aecfaa66e3be28488c2e382} 
+\index{student.cpp@{student.cpp}!useMediana@{useMediana}}
+\index{useMediana@{useMediana}!student.cpp@{student.cpp}}
+\doxyparagraph{useMediana()}
+{\footnotesize\ttfamily double use\+Mediana (\begin{DoxyParamCaption}\item[{const vector$<$ int $>$ \&}]{grades }\end{DoxyParamCaption})}
+
+
+
+\doxysubsubsection{Variable Documentation}
+\label{student_8cpp_aa654d52cfe31f69299af95427b40030d} 
+\index{student.cpp@{student.cpp}!NUM\_NAMES@{NUM\_NAMES}}
+\index{NUM\_NAMES@{NUM\_NAMES}!student.cpp@{student.cpp}}
+\doxyparagraph{NUM\_NAMES}
+{\footnotesize\ttfamily const int NUM\+\_\+\+NAMES = 10}
+
+\label{student_8cpp_a634d034f906571c98d618d15561728a2} 
+\index{student.cpp@{student.cpp}!pavardes@{pavardes}}
+\index{pavardes@{pavardes}!student.cpp@{student.cpp}}
+\doxyparagraph{pavardes}
+{\footnotesize\ttfamily vector$<$string$>$ pavardes = \{ "{}Kelmutis"{}, "{}Kelmutaite"{}, "{}Dangavicius"{}, "{}Pieliauskas"{}, "{}Lukavicius"{}, "{}Simonavicius"{}, "{}Skaudavicius"{}, "{}Juzenas"{}, "{}Darbavicius"{}, "{}Stankevicius"{} \}}
+
+\label{student_8cpp_aaba84d8a6cab4a6f1e8e6376f6078c34} 
+\index{student.cpp@{student.cpp}!vardai@{vardai}}
+\index{vardai@{vardai}!student.cpp@{student.cpp}}
+\doxyparagraph{vardai}
+{\footnotesize\ttfamily vector$<$string$>$ vardai = \{ "{}Jonas"{}, "{}Petras"{}, "{}Algis"{}, "{}Marius"{}, "{}Gintaras"{}, "{}Tomas"{}, "{}Lukas"{}, "{}Simas"{}, "{}Gabrielius"{}, "{}Olegas"{} \}}
+

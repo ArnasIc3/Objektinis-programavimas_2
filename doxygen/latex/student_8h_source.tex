@@ -1,0 +1,114 @@
+\doxysubsection{student.\+h}
+\label{student_8h_source}\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ STUDENT\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ STUDENT\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <numeric>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <ctime>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <cctype>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <iterator>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00024\ \textcolor{keyword}{using\ namespace\ }std::chrono;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }Zmogus\{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{public}:\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~Zmogus()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//geteriai}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ getVardas()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ getPavarde()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ std::vector<int>\&\ getND()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ getGalutinis()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ getEgzaminas()\ =\ 0;}
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{class\ }Studentas:\ \textcolor{keyword}{public}\ Zmogus\{}
+\DoxyCodeLine{00039\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00040\ \ \ \ \ std::string\ vardas\_;}
+\DoxyCodeLine{00041\ \ \ \ \ std::string\ pavarde\_;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{double}\ egzaminas\_;}
+\DoxyCodeLine{00043\ \ \ \ \ std::vector<int>\ nd\_;}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{double}\ galutinis\_;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Default\ constructor}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ Studentas();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Constructor\ with\ parameters}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ Studentas(\textcolor{keyword}{const}\ std::string\&\ vardas\_,\ \textcolor{keyword}{const}\ std::string\&\ pavarde\_,\ \textcolor{keywordtype}{double}\ galutinis\_,\ \textcolor{keyword}{const}\ std::vector<int>\&\ nd\_);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Copy\ constructor}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ Studentas(\textcolor{keyword}{const}\ Studentas\&\ other);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Copy\ assignment\ operator}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ Studentas\&\ operator=(\textcolor{keyword}{const}\ Studentas\&\ other);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Move\ constructor}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ Studentas(Studentas\&\&\ other)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Move\ assignment\ operator}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ Studentas\&\ operator=(Studentas\&\&\ other)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Destructor}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \string~Studentas();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Getters}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ getVardas()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ vardas\_;\ \}\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ getPavarde()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ pavarde\_;\ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<int>\&\ getND()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ nd\_;\ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ getGalutinis()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ galutinis\_;\ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ getEgzaminas()\ \{\ \textcolor{keywordflow}{return}\ egzaminas\_;\ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Setters}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ setVardas(\textcolor{keyword}{const}\ std::string\&\ vardas)\ \{\ vardas\_\ =\ vardas;\ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ setPavarde(\textcolor{keyword}{const}\ std::string\&\ pavarde)\ \{\ pavarde\_\ =\ pavarde;\ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ setEgzaminas(\textcolor{keywordtype}{double}\ egzaminas)\ \{\ egzaminas\_\ =\ egzaminas;\ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ setNd(\textcolor{keyword}{const}\ std::vector<int>\&\ nd)\ \{\ nd\_\ =\ nd;\ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ setGalutinis(\textcolor{keywordtype}{double}\ galutinis)\ \{\ this-\/>galutinis\_\ =\ galutinis;\}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ final\ grade}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ calculateGalutinis(\textcolor{keywordtype}{bool}\ useMedian)\ \textcolor{keyword}{const};\ \textcolor{comment}{//\ Add\ the\ missing\ implementation}}
+\DoxyCodeLine{00083\ \};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{comment}{//\ Comparison\ functions\ for\ sorting}}
+\DoxyCodeLine{00086\ \textcolor{keywordtype}{bool}\ compare(\textcolor{keyword}{const}\ Studentas\&,\ \textcolor{keyword}{const}\ Studentas\&);}
+\DoxyCodeLine{00087\ \textcolor{keywordtype}{bool}\ comparePagalPavarde(\textcolor{keyword}{const}\ Studentas\&,\ \textcolor{keyword}{const}\ Studentas\&);}
+\DoxyCodeLine{00088\ \textcolor{keywordtype}{bool}\ comparePagalEgza(\textcolor{keyword}{const}\ Studentas\&,\ \textcolor{keyword}{const}\ Studentas\&);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{comment}{//\ Input\ function}}
+\DoxyCodeLine{00091\ \textcolor{keywordtype}{void}\ Ivedimas(vector<Studentas>\&\ stud,\ \textcolor{keywordtype}{bool}\ randomNames\ =\ \textcolor{keyword}{false},\ \textcolor{keywordtype}{bool}\ randomGrades\ =\ \textcolor{keyword}{false},\ \textcolor{keywordtype}{bool}\ studentCount\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ Menu\ function}}
+\DoxyCodeLine{00094\ \textcolor{keywordtype}{void}\ Pasirinkimai(vector<Studentas>\&\ students);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{comment}{//\ Output\ function}}
+\DoxyCodeLine{00097\ \textcolor{keywordtype}{void}\ Spausdinimas(\textcolor{keyword}{const}\ vector<Studentas>\&\ students,\ \textcolor{keywordtype}{bool}\ Mediana);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{comment}{//\ Check\ if\ a\ string\ is\ a\ number}}
+\DoxyCodeLine{00100\ \textcolor{keywordtype}{bool}\ isNumber(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ str);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ Calculate\ the\ final\ grade\ using\ median}}
+\DoxyCodeLine{00103\ \textcolor{keywordtype}{double}\ useMediana(\textcolor{keyword}{const}\ vector<int>\&\ grades);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{comment}{//\ Generate\ random\ data}}
+\DoxyCodeLine{00106\ \textcolor{keywordtype}{void}\ Generacija(\textcolor{keywordtype}{int}\ Pas);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ STUDENT\_H}}
+\DoxyCodeLine{00109\ \textcolor{comment}{//\ Path:\ v0.3/v0.3.cpp}}
+
+\end{DoxyCode}
