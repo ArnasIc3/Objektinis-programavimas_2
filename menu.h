@@ -2,7 +2,6 @@
 #define MENU_H
 
 #include <string>
-#include <vector>
 #include "student.h"
 
 void Menu_execute();

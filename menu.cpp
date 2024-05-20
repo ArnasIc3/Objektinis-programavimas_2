@@ -8,7 +8,7 @@ void Menu_execute() {
     char calcChoice = ' ';
     string choice;
     do {
-        cout << "Name: v2.0\n";
+        cout << "Name: v3.0\n";
         cout << "Pasirinite veiksma: " << endl;
         cout << "1 - Uzpildyti ranka" << endl;
         cout << "2 - Sugeneruoti tik pazymius" << endl;
@@ -22,19 +22,19 @@ void Menu_execute() {
         try {
             switch (stoi(choice)) {
             case 1: {
-                vector<Studentas> students;
+                mVector<Studentas> students;
                 Ivedimas(students, false, false);
                 Pasirinkimai(students);
                 break;
             }
             case 2: {
-                vector<Studentas> students;
+                mVector<Studentas> students;
                 Ivedimas(students, false, true);
                 Pasirinkimai(students);
                 break;
             }
             case 3: {
-                vector<Studentas> students;
+                mVector<Studentas> students;
                 Ivedimas(students, true, true, true);
                 Pasirinkimai(students);
                 break;
@@ -46,7 +46,7 @@ void Menu_execute() {
                     continue;
                 }
                 getline(fd, choice);    //praleisti pirmaja eilute
-                vector<Studentas> students;
+                mVector<Studentas> students;
                 
                 string line;
                 while (getline(fd, line)) {
@@ -57,7 +57,7 @@ void Menu_execute() {
                     student.setVardas(vardas);
                     student.setPavarde(pavarde);
                     int grade;
-                    vector<int> nd;
+                    mVector<int> nd;
                     while (iss >> grade) {
                         nd.push_back(grade);
                     }

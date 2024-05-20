@@ -1,14 +1,14 @@
 #include "student.h"
 
 const int NUM_NAMES = 10;
-vector<string> vardai = { "Jonas", "Petras", "Algis", "Marius", "Gintaras", "Tomas", "Lukas", "Simas", "Gabrielius", "Olegas" };
-vector<string> pavardes = { "Kelmutis", "Kelmutaite", "Dangavicius", "Pieliauskas", "Lukavicius", "Simonavicius", "Skaudavicius", "Juzenas", "Darbavicius", "Stankevicius" };
+mVector<string> vardai = { "Jonas", "Petras", "Algis", "Marius", "Gintaras", "Tomas", "Lukas", "Simas", "Gabrielius", "Olegas" };
+mVector<string> pavardes = { "Kelmutis", "Kelmutaite", "Dangavicius", "Pieliauskas", "Lukavicius", "Simonavicius", "Skaudavicius", "Juzenas", "Darbavicius", "Stankevicius" };
 
 // Default constructor
 Studentas::Studentas() : vardas_(""), pavarde_(""), egzaminas_(0.0) {}
 
 // Constructor with parameters
-Studentas::Studentas(const std::string& vardas, const std::string& pavarde, double egzaminas, const std::vector<int>& nd)
+Studentas::Studentas(const std::string& vardas, const std::string& pavarde, double egzaminas, const mVector<int>& nd)
     : vardas_(vardas), pavarde_(pavarde), egzaminas_(egzaminas), nd_(nd) {}
 
 // Copy assignment operator
@@ -82,12 +82,12 @@ bool isNumber(const string& str) {
     return !str.empty() && all_of(str.begin(), str.end(), ::isdigit);
 }
 
-double useMediana(const vector<int>& grades) {
+double useMediana(const mVector<int>& grades) {
     if (grades.empty()) {
         return 0.0; // Return 0 if the list of grades is empty
     }
 
-    vector<int> sortedGrades = grades;
+    mVector<int> sortedGrades = grades;
     sort(sortedGrades.begin(), sortedGrades.end());
     int count = sortedGrades.size();
     if (count >= 2) {
@@ -98,7 +98,7 @@ double useMediana(const vector<int>& grades) {
     }
 }
 
-void Ivedimas(vector<Studentas>& stud, bool randomNames, bool randomGrades, bool studentCount) {
+void Ivedimas(mVector<Studentas>& stud, bool randomNames, bool randomGrades, bool studentCount) {
     bool moreStudents = true;
     while (moreStudents) {
         //Zmogus zmogus; // Zmogus (neveikia nes yra abstrakti klase)
@@ -115,7 +115,7 @@ void Ivedimas(vector<Studentas>& stud, bool randomNames, bool randomGrades, bool
 
         if (randomGrades) {
             int ndCount = rand() % 11;
-            vector<int> nd;
+            mVector<int> nd;
             for (int j = 0; j < ndCount; j++) {
                 nd.push_back(rand() % 11);
             }
@@ -130,7 +130,7 @@ void Ivedimas(vector<Studentas>& stud, bool randomNames, bool randomGrades, bool
             } while (!isNumber(input));
             int ndCount = stoi(input);
 
-            vector<int> nd;
+            mVector<int> nd;
             for (int j = 0; j < ndCount; j++) {
                 do {
                     cout << j + 1 << " balas: ";
@@ -156,7 +156,7 @@ void Ivedimas(vector<Studentas>& stud, bool randomNames, bool randomGrades, bool
     }
 }
 
-void Spausdinimas(const vector<Studentas>& stud, bool Mediana) {
+void Spausdinimas(const mVector<Studentas>& stud, bool Mediana) {
     cout << left << setw(15) << "Pavarde" << left << setw(15) << "Vardas" << left << setw(15) << "Galutinis ";
     if (Mediana) {
         cout << left << setw(15) << "Med.";
@@ -172,7 +172,7 @@ void Spausdinimas(const vector<Studentas>& stud, bool Mediana) {
     }
 }
 
-void sortStudents(vector<Studentas>& students, const string& sortBy, bool Mediana) {
+void sortStudents(mVector<Studentas>& students, const string& sortBy, bool Mediana) {
     if (sortBy == "V" || sortBy == "v") {
         sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
             return a.getVardas() < b.getVardas();
@@ -196,7 +196,7 @@ void sortStudents(vector<Studentas>& students, const string& sortBy, bool Median
     }
 }
 
-void Pasirinkimai(vector<Studentas>& students)
+void Pasirinkimai(mVector<Studentas>& students)
 {
     char calcChoice;
     cout << "Pasirinkite skaiciavimo metoda (V - vidurkis, M - mediana): ";
@@ -275,8 +275,8 @@ void Generacija(int Pas) {
 
         auto startSort = high_resolution_clock::now();
 
-        std::vector<Studentas> highGrades;
-        std::vector<Studentas> lowGrades;
+        mVector<Studentas> highGrades;
+        mVector<Studentas> lowGrades;
         
         string line;
         getline(inputFile, line); // Skip the header line
@@ -288,7 +288,7 @@ void Generacija(int Pas) {
             student.setVardas(vardas);
             student.setPavarde(pavarde);
             int grade;
-            vector<int> nd;
+            mVector<int> nd;
             while (iss >> grade) {
                 nd.push_back(grade);
             }
@@ -357,7 +357,7 @@ void Generacija(int Pas) {
         
             auto startSort = high_resolution_clock::now();
         
-            std::vector<Studentas> lowGrades;
+            mVector<Studentas> lowGrades;
         
             string line;
             getline(inputFile, line); // Skip the header line
@@ -369,7 +369,7 @@ void Generacija(int Pas) {
                 student.setVardas(vardas);
                 student.setPavarde(pavarde);
                 int grade;
-                vector<int> nd;
+                mVector<int> nd;
                 while (iss >> grade) {
                     nd.push_back(grade);
                 }
@@ -413,7 +413,7 @@ void Generacija(int Pas) {
             }
             string line;
             getline(inputFile, line); // Skip the header line
-            vector<Studentas> students; // Declare the students list
+            mVector<Studentas> students; // Declare the students list
             while (getline(inputFile, line)) {
                 istringstream iss(line);
                 Studentas student;
@@ -422,7 +422,7 @@ void Generacija(int Pas) {
                 student.setVardas(vardas);
                 student.setPavarde(pavarde);
                 int grade;
-                vector<int> nd;
+                mVector<int> nd;
                 while (iss >> grade) {
                     nd.push_back(grade);
                 }
@@ -442,8 +442,8 @@ void Generacija(int Pas) {
             cout << " File " << fileIndex << "  read execution time : " << durationread.count() / 1000.0 << " seconds." << endl;
 
             auto startSort = high_resolution_clock::now();
-            vector<Studentas> highGradeStudents;
-            vector<Studentas> lowGradeStudents;
+            mVector<Studentas> highGradeStudents;
+            mVector<Studentas> lowGradeStudents;
         
             for (auto& student : students) {
                 if (student.calculateGalutinis() >= 5.0) {

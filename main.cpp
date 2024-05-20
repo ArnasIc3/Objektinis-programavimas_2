@@ -2,7 +2,7 @@
 #include "student.h"
 
 void testConstructors() {
-    vector<int> grades = {5, 6, 7, 8, 9};
+    mVector<int> grades = {5, 6, 7, 8, 9};
 
     // parameterized constructor
     Studentas s1("John", "Doe", 8, grades);

@@ -18,6 +18,7 @@
 #include <iterator>
 #include <functional>
 #include <stdexcept>
+#include "mVector.h"
 
 
 using namespace std;
@@ -30,7 +31,7 @@ class Zmogus{
     //geteriai
     virtual std::string getVardas() const = 0;
     virtual std::string getPavarde() const = 0;
-    virtual const std::vector<int>& getND() const = 0;
+    virtual const mVector<int>& getND() const = 0;
     virtual double getEgzaminas() = 0;
 };
 
@@ -39,14 +40,14 @@ private:
     std::string vardas_;
     std::string pavarde_;
     double egzaminas_;
-    std::vector<int> nd_;
+    mVector<int> nd_;
     bool useMedian;
 public:
         // Default constructor
         Studentas();
 
         // Constructor with parameters
-        Studentas(const std::string& vardas_, const std::string& pavarde_, double egzaminas_, const std::vector<int>& nd_);
+        Studentas(const std::string& vardas_, const std::string& pavarde_, double egzaminas_, const mVector<int>& nd_);
 
         // Copy constructor
         Studentas(const Studentas& other);
@@ -66,14 +67,14 @@ public:
         // Getters
         inline std::string getVardas() const { return vardas_; } 
         inline std::string getPavarde() const { return pavarde_; }
-        const std::vector<int>& getND() const { return nd_; }
+        const mVector<int>& getND() const { return nd_; }
         double getEgzaminas() { return egzaminas_; }
 
         // Setters
         void setVardas(const std::string& vardas) { vardas_ = vardas; }
         void setPavarde(const std::string& pavarde) { pavarde_ = pavarde; }
         void setEgzaminas(double egzaminas) { egzaminas_ = egzaminas; }
-        void setNd(const std::vector<int>& nd) { nd_ = nd; }
+        void setNd(const mVector<int>& nd) { nd_ = nd; }
 
         // Other functions
         void setUseMedian(bool useMedian) {this -> useMedian = useMedian; }
@@ -88,19 +89,19 @@ bool comparePagalPavarde(const Studentas&, const Studentas&);
 bool comparePagalEgza(const Studentas&, const Studentas&);
 
 // Input function
-void Ivedimas(vector<Studentas>& stud, bool randomNames = false, bool randomGrades = false, bool studentCount = false);
+void Ivedimas(mVector<Studentas>& stud, bool randomNames = false, bool randomGrades = false, bool studentCount = false);
 
 // Menu function
-void Pasirinkimai(vector<Studentas>& students);
+void Pasirinkimai(mVector<Studentas>& students);
 
 // Output function
-void Spausdinimas(const vector<Studentas>& students, bool Mediana);
+void Spausdinimas(const mVector<Studentas>& students, bool Mediana);
 
 // Check if a string is a number
 bool isNumber(const string& str);
 
 // Calculate the final grade using median
-double useMediana(const vector<int>& grades);
+double useMediana(const mVector<int>& grades);
 
 // Generate random data
 void Generacija(int Pas);
