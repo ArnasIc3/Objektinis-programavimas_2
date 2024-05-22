@@ -14,6 +14,11 @@
 #include <cctype>
 #include <cmath>
 #include <chrono>
+#include <random>
+#include <iterator>
+#include <functional>
+#include <stdexcept>
+
 
 using namespace std;
 using namespace std::chrono;
@@ -74,7 +79,7 @@ public:
         void setNd(const std::vector<int>& nd) { nd_ = nd; }
         void setGalutinis(double galutinis) { this->galutinis_ = galutinis;}
         // Calculate the final grade
-        void calculateGalutinis(bool useMedian); // Add the missing implementation
+        double calculateGalutinis(bool useMedian) const; // Add the missing implementation
 };
 
 // Comparison functions for sorting

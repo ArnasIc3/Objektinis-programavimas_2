@@ -54,18 +54,18 @@ Studentas& Studentas::operator=(Studentas&& other) noexcept {
 Studentas::~Studentas() = default;
 
 // Define the calculateGalutinis method for Studentas
-void Studentas::calculateGalutinis(bool useMedian) {
+double Studentas::calculateGalutinis(bool useMedian) const {
     if (nd_.empty()) {
-        setGalutinis(egzaminas_);
+        return 1; // Return 0 if the list of grades is empty
     }
     else {
-        double nd_sum = accumulate(nd_.begin(), nd_.end(), 0);
+        double nd_sum = std::accumulate(nd_.begin(), nd_.end(), 0);
         double vidurkis = nd_sum / nd_.size();
         if (useMedian) {
-            setGalutinis(0.4 * useMediana(nd_) + 0.6 * egzaminas_);
+            return 0.4 * useMediana(nd_) + 0.6 * egzaminas_;
         }
         else {
-            setGalutinis(0.4 * vidurkis + 0.6 * egzaminas_);
+            return 0.4 * vidurkis + 0.6 * egzaminas_;
         }
     }
 }
@@ -108,7 +108,7 @@ double useMediana(const vector<int>& grades) {
 void Ivedimas(vector<Studentas>& stud, bool randomNames, bool randomGrades, bool studentCount) {
     bool moreStudents = true;
     while (moreStudents) {
-        //Zmogus zmogus; // Zmogus (not working because it's an abstract class)
+        //Zmogus zmogus; // Zmogus (neveikia nes yra abstrakti klase)
         Studentas student;
         if (!randomNames && !studentCount) {
             cout << "Iveskite studento varda ir pavarde: ";
@@ -262,8 +262,8 @@ void Generacija(int Pas) {
             return;
         }
 
-        ofstream highGradesFile(".galvociai_" + to_string(fileIndex) + ".txt");
-        ofstream lowGradesFile(".nuskriaustukai_" + to_string(fileIndex) + ".txt");
+        ofstream highGradesFile(".galvociai" + to_string(fileIndex) + ".txt");
+        ofstream lowGradesFile(".nuskriaustukai" + to_string(fileIndex) + ".txt");
 
         if (!highGradesFile || !lowGradesFile) {
             cerr << "Error creating output files." << endl;
@@ -294,16 +294,18 @@ void Generacija(int Pas) {
                 nd.pop_back();
             }
             student.setNd(nd);
-            double nd_sum = accumulate(nd.begin(), nd.end(), 0);
-            double vidurkis = nd_sum / nd.size();
             student.calculateGalutinis(false);
-        
             // Add student to appropriate vector based on final grade
-            if (student.getGalutinis() >= 5)
+            if (student.calculateGalutinis(false) >= 5)
+            {
                 highGrades.push_back(student);
-            else
+            }
+            else{
                 lowGrades.push_back(student);
+            }
         }
+        cout << "Number of high grade students: " << highGrades.size() << endl;
+        cout << "Number of low grade students: " << lowGrades.size() << endl;
 
         auto stopSort = high_resolution_clock::now();
 
@@ -311,12 +313,14 @@ void Generacija(int Pas) {
         // Write high and low grade students to separate files
         highGradesFile << "Vardas    Pavarde  Galutinis (Vid.)" << endl;
         for (const auto& student : highGrades) {
-            highGradesFile << left << setw(15) << student.getVardas() << left << setw(15) << student.getPavarde() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis() << endl;
+            double finalGrade = student.calculateGalutinis(false);
+            highGradesFile << setw(15) << student.getVardas() << setw(15) << student.getPavarde() << fixed << setprecision(2) << " " << finalGrade << endl;
         }
         
         lowGradesFile << "Vardas    Pavarde  Galutinis (Vid.)" << endl;
         for (const auto& student : lowGrades) {
-            lowGradesFile << left << setw(15) << student.getVardas() << left << setw(15) << student.getPavarde() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis() << endl;
+            double finalGrade = student.calculateGalutinis(false);
+            lowGradesFile << left << setw(15) << student.getVardas() << left << setw(15) << student.getPavarde() << left << setw(15) << fixed << setprecision(2) << " " << finalGrade << endl;
         }
         auto stopOutput = high_resolution_clock::now();
         auto durationOutput = duration_cast<milliseconds>(stopOutput - startOutput);
@@ -371,12 +375,10 @@ void Generacija(int Pas) {
                     nd.pop_back();
                 }
                 student.setNd(nd);
-                double nd_sum = accumulate(nd.begin(), nd.end(), 0);
-                double vidurkis = nd_sum / nd.size();
                 student.calculateGalutinis(false);
         
                 // Add student to appropriate vector based on final grade
-                if (student.getGalutinis() < 5)
+                if (student.calculateGalutinis(false) <= 5)
                     lowGrades.push_back(student);
             }
             auto stopSort = high_resolution_clock::now();
@@ -385,7 +387,8 @@ void Generacija(int Pas) {
             auto startOutput = high_resolution_clock::now();
             lowGradesFile << "Vardas    Pavarde  Galutinis (Vid.)" << endl;
             for (const auto& student : lowGrades) {
-                lowGradesFile << left << setw(15) << student.getVardas() << left << setw(15) << student.getPavarde() << left << setw(15) << fixed << setprecision(2) << student.getGalutinis() << endl;
+                double finalGrade = student.calculateGalutinis(false);
+                lowGradesFile << left << setw(15) << student.getVardas() << left << setw(15) << student.getPavarde() << left << setw(15) << fixed << setprecision(2) << " " << finalGrade << endl;
             }
             auto stopOutput = high_resolution_clock::now();
             auto durationOutput = duration_cast<milliseconds>(stopOutput - startOutput);
@@ -440,7 +443,7 @@ void Generacija(int Pas) {
             vector<Studentas> lowGradeStudents;
         
             for (auto& student : students) {
-                if (student.getGalutinis() >= 5.0) {
+                if (student.calculateGalutinis(false) >= 5.0) {
                     highGradeStudents.push_back(student);
                 } else {
                     lowGradeStudents.push_back(student);
@@ -457,12 +460,14 @@ void Generacija(int Pas) {
         
             // Write high grade students to highGradesFile
             for (auto& student : highGradeStudents) {
-                highGradesFile << student.getVardas().c_str() << " " << student.getPavarde().c_str() << " " << student.getGalutinis() << "\n";
+                double finalGrade = student.calculateGalutinis(false);
+                highGradesFile << student.getVardas().c_str() << " " << student.getPavarde().c_str() << " " << finalGrade << "\n";
             }
             
             // Write low grade students to lowGradesFile
             for (auto& student : lowGradeStudents) {
-                lowGradesFile << student.getVardas().c_str() << " " << student.getPavarde().c_str() << " " << student.getGalutinis() << "\n";
+                double finalGrade = student.calculateGalutinis(false);
+                lowGradesFile << student.getVardas().c_str() << " " << student.getPavarde().c_str() << " " << finalGrade << "\n";
             }
             highGradesFile.close();
             lowGradesFile.close();
